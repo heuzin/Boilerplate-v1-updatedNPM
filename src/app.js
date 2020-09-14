@@ -1,17 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-
-class HelloMessage extends React.Component {
-    render() {
-      return (
-        <div>
-          Hello 
-        </div>
-      );
-    }
-  }
+import WorkoutApp from './compoments/WorkoutApp'
   
-  ReactDOM.render(
-    <HelloMessage/>,
+ReactDOM.render(
+    <WorkoutApp/>,
     document.getElementById('app')
 );
