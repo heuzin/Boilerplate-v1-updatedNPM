@@ -6,6 +6,6 @@ export default class WorkoutApp extends React.Component {
             <div>
                 <header>Plan your daily Workout</header>
             </div>
-        )
-    }
-}
+        );
+    };
+};
