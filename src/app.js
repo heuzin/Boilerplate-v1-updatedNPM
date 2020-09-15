@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import WorkoutApp from './compoments/WorkoutApp'
+import WorkoutDashboardPage from './compoments/WorkoutDashboardPage'
+import AppRouter from './routers/AppRouter';
   
 ReactDOM.render(
-    <WorkoutApp/>,
+    <AppRouter/>,
     document.getElementById('app')
 );
