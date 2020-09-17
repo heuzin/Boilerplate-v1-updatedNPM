@@ -11,19 +11,19 @@ const addWorkout = ({ name = '', series = '', rep = 0, description = '', created
         description,
         createdAt
     }
-})
+});
 
 // REMOVE WORKOUT
 const removeWorkout = ({ id } = {}) => ({
     type: 'REMOVE_WORKOUT',
     id
-})
+});
 
 // EDIT WORKOUT
 const editWorkout = (id, updates) => ({
     type: 'EDIT_WORKOUT',
     id,
     updates
-})
+});
 
-export { addWorkout, removeWorkout, editWorkout }
+export { addWorkout, removeWorkout, editWorkout };

@@ -23,7 +23,7 @@ const workoutReducer = (state = workoutReducerDefaultState, action) => {
             })
         default:
             return state
-    }
-}
+    };
+};
 
-export default workoutReducer
+export default workoutReducer;
