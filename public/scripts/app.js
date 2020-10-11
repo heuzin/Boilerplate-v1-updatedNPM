@@ -1,5 +1,11 @@
-const template = <p>Workout</p>
+'use strict';
 
-const appRoot = document.getElementById('app')
+var template = React.createElement(
+  'p',
+  null,
+  'Workout'
+);
 
-ReactDOM.render(template,appRoot)
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);
