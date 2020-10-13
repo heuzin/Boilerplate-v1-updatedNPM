@@ -17,6 +17,7 @@ var WorkoutApp = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (WorkoutApp.__proto__ || Object.getPrototypeOf(WorkoutApp)).call(this, props));
 
         _this.handleAddExercise = _this.handleAddExercise.bind(_this);
+        _this.handleDeleteAll = _this.handleDeleteAll.bind(_this);
         _this.handleDeleteExercise = _this.handleDeleteExercise.bind(_this);
         _this.state = {
             exercise: []
@@ -34,6 +35,15 @@ var WorkoutApp = function (_React$Component) {
             this.setState(function (prevState) {
                 return {
                     exercise: prevState.exercise.concat(exercise)
+                };
+            });
+        }
+    }, {
+        key: 'handleDeleteAll',
+        value: function handleDeleteAll() {
+            this.setState(function () {
+                return {
+                    exercise: []
                 };
             });
         }
@@ -56,7 +66,7 @@ var WorkoutApp = function (_React$Component) {
                 'div',
                 null,
                 React.createElement(Header, { title: title }),
-                React.createElement(Exercises, { exercise: this.state.exercise, handleDeleteExercise: this.handleDeleteExercise }),
+                React.createElement(Exercises, { exercise: this.state.exercise, handleDeleteAll: this.handleDeleteAll, handleDeleteExercise: this.handleDeleteExercise }),
                 React.createElement(AddExercise, { handleAddExercise: this.handleAddExercise })
             );
         }
@@ -77,6 +87,11 @@ var Exercises = function Exercises(props) {
     return React.createElement(
         'div',
         null,
+        React.createElement(
+            'button',
+            { onClick: props.handleDeleteAll },
+            'Remove All'
+        ),
         props.exercise.map(function (exerciseName) {
             return React.createElement(ExerciseName, { handleDeleteExercise: props.handleDeleteExercise, key: exerciseName, exerciseText: exerciseName });
         })

@@ -2,6 +2,7 @@ class WorkoutApp extends React.Component {
     constructor(props) {
         super(props)
         this.handleAddExercise = this.handleAddExercise.bind(this)
+        this.handleDeleteAll = this.handleDeleteAll.bind(this)
         this.handleDeleteExercise = this.handleDeleteExercise.bind(this)
         this.state = {
             exercise: []
@@ -18,6 +19,13 @@ class WorkoutApp extends React.Component {
             }
         })
     }
+    handleDeleteAll() {
+        this.setState(() => {
+            return {
+                exercise: []
+            }
+        })
+    }
     handleDeleteExercise(toRemove) {
         this.setState((prevState) => {
             return {
@@ -30,7 +38,7 @@ class WorkoutApp extends React.Component {
         return (
             <div>
                 <Header title={title}/>
-                <Exercises exercise={this.state.exercise} handleDeleteExercise={this.handleDeleteExercise}/>
+                <Exercises exercise={this.state.exercise} handleDeleteAll={this.handleDeleteAll} handleDeleteExercise={this.handleDeleteExercise}/>
                 <AddExercise handleAddExercise={this.handleAddExercise}/>
             </div>
         )
@@ -46,6 +54,7 @@ const Header = (props) => {
 const Exercises = (props) => {
     return (
         <div>
+            <button onClick={props.handleDeleteAll}>Remove All</button>
             {props.exercise.map((exerciseName) => <ExerciseName handleDeleteExercise={props.handleDeleteExercise} key={exerciseName} exerciseText={exerciseName}/>)}
         </div>
     )
