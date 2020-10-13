@@ -8,6 +8,26 @@ class WorkoutApp extends React.Component {
             exercise: []
         }
     }
+    componentDidMount() {
+        // GET DATA FROM LOCAL STORAGE
+        try {
+            const json = localStorage.getItem('exercise')
+            const exercise = JSON.parse(json)
+
+            if (exercise) {
+                this.setState(() => ({ exercise }))
+            }
+        } catch (e) {
+
+        }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        // SAVE TO LOCAL STORAGE
+        if (prevState.exercise.length !== this.state.exercise.length) {
+            const json = JSON.stringify(this.state.exercise)
+            localStorage.setItem('exercise', json)
+        }
+    }
     handleAddExercise(exerciseText) {
         if (!exerciseText) {
             return 'Enter valid exercise name.'

@@ -26,6 +26,30 @@ var WorkoutApp = function (_React$Component) {
     }
 
     _createClass(WorkoutApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            // GET DATA FROM LOCAL STORAGE
+            try {
+                var json = localStorage.getItem('exercise');
+                var exercise = JSON.parse(json);
+
+                if (exercise) {
+                    this.setState(function () {
+                        return { exercise: exercise };
+                    });
+                }
+            } catch (e) {}
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            // SAVE TO LOCAL STORAGE
+            if (prevState.exercise.length !== this.state.exercise.length) {
+                var json = JSON.stringify(this.state.exercise);
+                localStorage.setItem('exercise', json);
+            }
+        }
+    }, {
         key: 'handleAddExercise',
         value: function handleAddExercise(exerciseText) {
             if (!exerciseText) {
