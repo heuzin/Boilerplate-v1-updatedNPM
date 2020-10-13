@@ -45,7 +45,9 @@ const Header = (props) => {
 
 const Exercises = (props) => {
     return (
-        props.exercise.map((exerciseName) => <ExerciseName handleDeleteExercise={props.handleDeleteExercise} key={exerciseName} exerciseText={exerciseName}/>)
+        <div>
+            {props.exercise.map((exerciseName) => <ExerciseName handleDeleteExercise={props.handleDeleteExercise} key={exerciseName} exerciseText={exerciseName}/>)}
+        </div>
     )
 }
 
@@ -53,7 +55,7 @@ const ExerciseName = (props) => {
     return (
         <div>
             {props.exerciseText}
-            <button onClick={props.handleDeleteExercise(console.log(props.exerciseText))}>Remove</button>
+            <button onClick={() => {props.handleDeleteExercise(props.exerciseText)}}>Remove</button>
         </div>
     )
 }

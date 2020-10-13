@@ -1,0 +1,6 @@
+[1013/073017.641:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Matheus\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\2a2376e8-4ad1-4120-b855-e634d54dae9d: The system cannot find the path specified. (0x3)
+[1013/073017.642:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Matheus\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\36b8dc44-895d-42e5-9277-68e93239d5d6: The system cannot find the path specified. (0x3)
+[1013/073017.642:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Matheus\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\668afd24-0b0b-4212-8065-19d0d8cf1f46: The system cannot find the path specified. (0x3)
+[1013/073017.663:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Matheus\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\d571fd8b-b82b-4f94-b230-fbd52cc5ae5e: The system cannot find the path specified. (0x3)
+[1013/073017.664:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Matheus\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\d8a31a77-f3ed-4967-974c-eef95ade3454: The system cannot find the path specified. (0x3)
+[1013/073017.664:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

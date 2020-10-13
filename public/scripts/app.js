@@ -74,9 +74,13 @@ var Header = function Header(props) {
 };
 
 var Exercises = function Exercises(props) {
-    return props.exercise.map(function (exerciseName) {
-        return React.createElement(ExerciseName, { handleDeleteExercise: props.handleDeleteExercise, key: exerciseName, exerciseText: exerciseName });
-    });
+    return React.createElement(
+        'div',
+        null,
+        props.exercise.map(function (exerciseName) {
+            return React.createElement(ExerciseName, { handleDeleteExercise: props.handleDeleteExercise, key: exerciseName, exerciseText: exerciseName });
+        })
+    );
 };
 
 var ExerciseName = function ExerciseName(props) {
@@ -86,7 +90,9 @@ var ExerciseName = function ExerciseName(props) {
         props.exerciseText,
         React.createElement(
             'button',
-            { onClick: props.handleDeleteExercise(console.log(props.exerciseText)) },
+            { onClick: function onClick() {
+                    props.handleDeleteExercise(props.exerciseText);
+                } },
             'Remove'
         )
     );
