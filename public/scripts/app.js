@@ -17,6 +17,7 @@ var WorkoutApp = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (WorkoutApp.__proto__ || Object.getPrototypeOf(WorkoutApp)).call(this, props));
 
         _this.handleAddExercise = _this.handleAddExercise.bind(_this);
+        _this.handleDeleteExercise = _this.handleDeleteExercise.bind(_this);
         _this.state = {
             exercise: []
         };
@@ -37,6 +38,17 @@ var WorkoutApp = function (_React$Component) {
             });
         }
     }, {
+        key: 'handleDeleteExercise',
+        value: function handleDeleteExercise(toRemove) {
+            this.setState(function (prevState) {
+                return {
+                    exercise: prevState.exercise.filter(function (exercise) {
+                        return toRemove !== exercise;
+                    })
+                };
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var title = 'Workout app';
@@ -44,7 +56,7 @@ var WorkoutApp = function (_React$Component) {
                 'div',
                 null,
                 React.createElement(Header, { title: title }),
-                React.createElement(ExerciseName, { exercise: this.state.exercise }),
+                React.createElement(Exercises, { exercise: this.state.exercise, handleDeleteExercise: this.handleDeleteExercise }),
                 React.createElement(AddExercise, { handleAddExercise: this.handleAddExercise })
             );
         }
@@ -61,14 +73,23 @@ var Header = function Header(props) {
     );
 };
 
-var ExerciseName = function ExerciseName(props) {
-    return props.exercise.map(function (exercise) {
-        return React.createElement(
-            'p',
-            { key: exercise },
-            exercise
-        );
+var Exercises = function Exercises(props) {
+    return props.exercise.map(function (exerciseName) {
+        return React.createElement(ExerciseName, { handleDeleteExercise: props.handleDeleteExercise, key: exerciseName, exerciseText: exerciseName });
     });
+};
+
+var ExerciseName = function ExerciseName(props) {
+    return React.createElement(
+        'div',
+        null,
+        props.exerciseText,
+        React.createElement(
+            'button',
+            { onClick: props.handleDeleteExercise(console.log(props.exerciseText)) },
+            'Remove'
+        )
+    );
 };
 
 var AddExercise = function AddExercise(props) {
