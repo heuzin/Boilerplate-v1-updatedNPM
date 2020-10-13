@@ -16,6 +16,7 @@ var WorkoutApp = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (WorkoutApp.__proto__ || Object.getPrototypeOf(WorkoutApp)).call(this, props));
 
+        _this.handleAddExercise = _this.handleAddExercise.bind(_this);
         _this.state = {
             exercise: []
         };
@@ -23,6 +24,19 @@ var WorkoutApp = function (_React$Component) {
     }
 
     _createClass(WorkoutApp, [{
+        key: 'handleAddExercise',
+        value: function handleAddExercise(e) {
+            e.preventDefault();
+
+            var exercise = e.target.elements.exercio.value.trim();
+
+            this.setState(function (prevState) {
+                return {
+                    exercise: prevState.exercise.concat(exercise)
+                };
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var title = 'Workout app';
@@ -30,7 +44,8 @@ var WorkoutApp = function (_React$Component) {
                 'div',
                 null,
                 React.createElement(Header, { title: title }),
-                React.createElement(ExerciseName, { exercise: this.state.exercise })
+                React.createElement(ExerciseName, { exercise: this.state.exercise }),
+                React.createElement(AddExercise, { handleAddExercise: this.handleAddExercise })
             );
         }
     }]);
@@ -54,6 +69,19 @@ var ExerciseName = function ExerciseName(props) {
             exercise
         );
     });
+};
+
+var AddExercise = function AddExercise(props) {
+    return React.createElement(
+        'form',
+        { onSubmit: props.handleAddExercise },
+        React.createElement('input', { type: 'text', name: 'exercio' }),
+        React.createElement(
+            'button',
+            null,
+            'Add Exercise'
+        )
+    );
 };
 
 var appRoot = document.getElementById('app');
