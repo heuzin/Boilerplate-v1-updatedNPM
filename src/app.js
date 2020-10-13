@@ -8,14 +8,16 @@ class WorkoutApp extends React.Component {
             exercise: []
         }
     }
-    handleAddExercise(e) {
-        e.preventDefault()
-
-        const exercise = e.target.elements.exercio.value.trim()
-
+    handleAddExercise(exerciseText) {
+        if (!exerciseText) {
+            return 'Enter valid exercise name.'
+        } else if (this.state.exercise.indexOf(exerciseText) > -1) {
+            return 'That exercise already exists.'
+        }
+        
         this.setState((prevState) => {
             return {
-                exercise: prevState.exercise.concat(exercise)
+                exercise: prevState.exercise.concat(exerciseText)
             }
         })
     }
@@ -69,14 +71,48 @@ const ExerciseName = (props) => {
     )
 }
 
-const AddExercise = (props) => {
-    return (
-        <form onSubmit={props.handleAddExercise}>
-            <input type='text' name='exercio'/>
-            <button>Add Exercise</button>
-        </form>
-    )
+class AddExercise extends React.Component {
+    constructor(props) {
+        super(props)
+        this.handleAddExercise = this.handleAddExercise.bind(this)
+        this.state = {
+            error: undefined
+        }
+    }
+    handleAddExercise(e) {
+        e.preventDefault()
+        console.log('testing')
+
+        const exerciseText = e.target.elements.exercio.value.trim()
+        const error = this.props.handleAddExercise(exerciseText)
+
+        this.setState(() => ({ error }))
+
+        if (!error) {
+            e.target.elements.exercio.value = ''
+        }
+    }
+    render() {
+        return (
+            <div>
+                {this.state.error && <p>{this.state.error}</p>}
+                <form onSubmit={this.handleAddExercise}>
+                    <input type='text' name='exercio'/>
+                    <button>Add Exercise</button>
+                </form>
+            </div>
+        )
+    }
 }
+
+// const AddExercise = (props) => {
+//     return (
+//         <form onSubmit={props.handleAddExercise}>
+//             <input type='text' name='exercio'/>
+//             <button>Add Exercise</button>
+//         </form>
+//     )
+// }
 
 let appRoot = document.getElementById('app');
 

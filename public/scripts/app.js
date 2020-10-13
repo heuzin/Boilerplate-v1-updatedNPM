@@ -27,14 +27,16 @@ var WorkoutApp = function (_React$Component) {
 
     _createClass(WorkoutApp, [{
         key: 'handleAddExercise',
-        value: function handleAddExercise(e) {
-            e.preventDefault();
-
-            var exercise = e.target.elements.exercio.value.trim();
+        value: function handleAddExercise(exerciseText) {
+            if (!exerciseText) {
+                return 'Enter valid exercise name.';
+            } else if (this.state.exercise.indexOf(exerciseText) > -1) {
+                return 'That exercise already exists.';
+            }
 
             this.setState(function (prevState) {
                 return {
-                    exercise: prevState.exercise.concat(exercise)
+                    exercise: prevState.exercise.concat(exerciseText)
                 };
             });
         }
@@ -113,18 +115,74 @@ var ExerciseName = function ExerciseName(props) {
     );
 };
 
-var AddExercise = function AddExercise(props) {
-    return React.createElement(
-        'form',
-        { onSubmit: props.handleAddExercise },
-        React.createElement('input', { type: 'text', name: 'exercio' }),
-        React.createElement(
-            'button',
-            null,
-            'Add Exercise'
-        )
-    );
-};
+var AddExercise = function (_React$Component2) {
+    _inherits(AddExercise, _React$Component2);
+
+    function AddExercise(props) {
+        _classCallCheck(this, AddExercise);
+
+        var _this2 = _possibleConstructorReturn(this, (AddExercise.__proto__ || Object.getPrototypeOf(AddExercise)).call(this, props));
+
+        _this2.handleAddExercise = _this2.handleAddExercise.bind(_this2);
+        _this2.state = {
+            error: undefined
+        };
+        return _this2;
+    }
+
+    _createClass(AddExercise, [{
+        key: 'handleAddExercise',
+        value: function handleAddExercise(e) {
+            e.preventDefault();
+            console.log('testing');
+
+            var exerciseText = e.target.elements.exercio.value.trim();
+            var error = this.props.handleAddExercise(exerciseText);
+
+            this.setState(function () {
+                return { error: error };
+            });
+
+            if (!error) {
+                e.target.elements.exercio.value = '';
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                this.state.error && React.createElement(
+                    'p',
+                    null,
+                    this.state.error
+                ),
+                React.createElement(
+                    'form',
+                    { onSubmit: this.handleAddExercise },
+                    React.createElement('input', { type: 'text', name: 'exercio' }),
+                    React.createElement(
+                        'button',
+                        null,
+                        'Add Exercise'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AddExercise;
+}(React.Component);
+
+// const AddExercise = (props) => {
+//     return (
+//         <form onSubmit={props.handleAddExercise}>
+//             <input type='text' name='exercio'/>
+//             <button>Add Exercise</button>
+//         </form>
+//     )
+// }
 
 var appRoot = document.getElementById('app');
 
