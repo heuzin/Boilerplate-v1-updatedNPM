@@ -1,3 +1,6 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 class WorkoutApp extends React.Component {
     constructor(props) {
         super(props)
@@ -6,26 +9,6 @@ class WorkoutApp extends React.Component {
         this.handleDeleteExercise = this.handleDeleteExercise.bind(this)
         this.state = {
             exercise: []
-        }
-    }
-    componentDidMount() {
-        // GET DATA FROM LOCAL STORAGE
-        try {
-            const json = localStorage.getItem('exercise')
-            const exercise = JSON.parse(json)
-
-            if (exercise) {
-                this.setState(() => ({ exercise }))
-            }
-        } catch (e) {
-
-        }
-    }
-    componentDidUpdate(prevProps, prevState) {
-        // SAVE TO LOCAL STORAGE
-        if (prevState.exercise.length !== this.state.exercise.length) {
-            const json = JSON.stringify(this.state.exercise)
-            localStorage.setItem('exercise', json)
         }
     }
     handleAddExercise(exerciseText) {
@@ -54,6 +37,26 @@ class WorkoutApp extends React.Component {
                 exercise: prevState.exercise.filter((exercise) => toRemove !== exercise)
             }
         })
+    }
+    componentDidMount() {
+        // GET DATA FROM LOCAL STORAGE
+        try {
+            const json = localStorage.getItem('exercise')
+            const exercise = JSON.parse(json)
+
+            if (exercise) {
+                this.setState(() => ({ exercise }))
+            }
+        } catch (e) {
+
+        }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        // SAVE TO LOCAL STORAGE
+        if (prevState.exercise.length !== this.state.exercise.length) {
+            const json = JSON.stringify(this.state.exercise)
+            localStorage.setItem('exercise', json)
+        }
     }
     render() {
         const title = 'Workout app'
@@ -124,15 +127,6 @@ class AddExercise extends React.Component {
         )
     }
 }
-
-// const AddExercise = (props) => {
-//     return (
-//         <form onSubmit={props.handleAddExercise}>
-//             <input type='text' name='exercio'/>
-//             <button>Add Exercise</button>
-//         </form>
-//     )
-// }
 
 let appRoot = document.getElementById('app');
 
