@@ -12,5 +12,6 @@ module.exports = merge(common, {
   devServer: {
       contentBase: './public',
       historyApiFallback: true,
+      publicPath: '/dist/'
   }
 });
